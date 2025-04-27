@@ -1,36 +1,29 @@
 import java.util.Scanner;
-//importamos el java
 public class JuegoBatalla {
     private Robot[] robots = new Robot[10];
     private int cantidad = 0;
     private Scanner scanner = new Scanner(System.in);
     private boolean simulacionActiva = true;
-    private int contador = 0;
-    //main          
+    // main
     public static void main(String[] args) {
         JuegoBatalla juego = new JuegoBatalla();
         juego.crearRobots();
         juego.iniciarBatalla();
     }
-    //constructor
+    // constructor
     public JuegoBatalla() {
     }
-    //metodo para generar un numero aleatorio
-    private int numeroContador(int min, int max) {
-        contador++;
-        int horaActual = (int)(System.currentTimeMillis() % 10000);
-        int base = contador * 13 + horaActual;
-        int rango = max - min + 1;
-        int resultado = min + (base % rango);
-        return resultado;
+    // metodo que genera un número aleatorio entre 0 y cantidad-1
+    private int robotAleatorio() {
+        return (int)(Math.random() * cantidad);
     }
-    //metodo que crea los robots y agregarlos al arreglo
+    // metodo que crea los robots y agregarlos al arreglo
     public void crearRobots() {
         System.out.println("Agregar Robots");
         System.out.print("Cuantos robots para la simulacion (maximo 10): ");
         int cantidadIngresada = scanner.nextInt();
-        scanner.nextLine();
-                if (cantidadIngresada < 1) {
+        scanner.nextLine();    
+        if (cantidadIngresada < 1) {
             cantidad = 2;
             System.out.println("Se utilizaran 2 robots");
         } else if (cantidadIngresada > 10) {
@@ -43,29 +36,25 @@ public class JuegoBatalla {
             System.out.println("\nRobot " + (i + 1));
             System.out.print("Nombre: ");
             String nombre = scanner.nextLine();
-    
             System.out.print("Puntos de vida (50-100): ");
             int vida = scanner.nextInt();
             scanner.nextLine();
             if (vida < 50) vida = 50;
-            if (vida > 100) vida = 100;
-    
+            if (vida > 100) vida = 100; 
             System.out.print("Puntos de ataque (10-20): ");
             int ataque = scanner.nextInt();
             scanner.nextLine();
             if (ataque < 10) ataque = 10;
             if (ataque > 20) ataque = 20;
-    
             System.out.print("Puntos de defensa (0-10): ");
             int defensa = scanner.nextInt();
             scanner.nextLine();
             if (defensa < 0) defensa = 0;
             if (defensa > 10) defensa = 10;
-    
             robots[i] = new Robot(nombre, vida, ataque, defensa);
         }
     }
-    //metodo para eliminar un robot del arreglo cuando es destruido
+    // metodo para eliminar un robot del arreglo cuando es destruido
     private void eliminarRobot(int indice) {
         for (int i = indice; i < cantidad - 1; i++) {
             robots[i] = robots[i + 1];
@@ -73,7 +62,7 @@ public class JuegoBatalla {
         robots[cantidad - 1] = null;
         cantidad--;
     }
-    //metodo para verificar si el usuario quiere pausar o terminar la simulacion
+    // metodo para verificar si el usuario quiere pausar o terminar la simulacion
     private boolean verificarPausa() {
         System.out.println("Enter para continuar o escribir P para pausar:");
         String entrada = scanner.nextLine();
@@ -93,28 +82,28 @@ public class JuegoBatalla {
         }
         return false;
     }
-    //metodo para iniciar y controlar toda la batalla entre los robots
+    // metodo que inicia y controla la pelea
     public void iniciarBatalla() {
         System.out.println("\nComienza la batalla!");
         int turno = 1;
-            while (cantidad > 1 && simulacionActiva) {
+        while (cantidad > 1 && simulacionActiva) {
             System.out.println("\nTurno " + turno);
-                if (verificarPausa()) {
+            if (verificarPausa()) {
                 continue;
             }
-                for (int i = 0; i < cantidad; i++) {
+            for (int i = 0; i < cantidad; i++) {
                 if (cantidad <= 1) {
                     break;
                 }
-                    Robot atacante = robots[i];
+                Robot atacante = robots[i];
                 int objetivo;
                 do {
-                    objetivo = numeroContador(0, cantidad - 1);
+                    objetivo = robotAleatorio(); // Uso del nuevo método simplificado
                 } while (objetivo == i);
-                    Robot atacado = robots[objetivo];
+                Robot atacado = robots[objetivo];
                 atacante.atacar(atacado);
-                    if (!atacado.estaVivo()) {
-                    System.out.println("⚡ " +atacado.getNombre() + " ha sido eliminado");
+                if (!atacado.estaVivo()) {
+                    System.out.println( atacado.getNombre() + " ha sido eliminado");
                     eliminarRobot(objetivo);
                     if (objetivo < i) {
                         i--;
@@ -123,14 +112,14 @@ public class JuegoBatalla {
             }
             turno++;
         }
-            if (simulacionActiva) {
+        if (simulacionActiva) {
             mostrarGanador();
         } else {
             System.out.println("\nSimulacion terminada");
             mostrarEstado();
         }
     }
-    //metodo para mostrar el estado de todos los robots y que se ve bonito
+    // metodo para mostrar el estado de todos los robots
     private void mostrarEstado() {
         System.out.println("\nEstado actual de los robots:");
         for (int i = 0; i < cantidad; i++) {
@@ -141,16 +130,14 @@ public class JuegoBatalla {
                 " +|+ Defensa: " + r.getDefensa());
         }
     }
-    //Muestra el ganador de la batalla
+    // muestra el ganador de la batalla
     private void mostrarGanador() {
         if (cantidad == 1) {
             Robot ganador = robots[0];
-            System.out.println("\n🏆 ¡" + ganador.getNombre() + " es el gran ganador de la batalla!");
+            System.out.println("\n :) ¡" + ganador.getNombre() + " es el gran ganador de la batalla!");
             System.out.println("Vida restante: " + ganador.getPuntosVida());
         } else {
-            System.out.println("\n Al parecer nadie gano");
+            System.out.println("\nAl parecer nadie gano");
         }
     }
 }
-
-  
