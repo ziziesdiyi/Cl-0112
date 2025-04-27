@@ -119,6 +119,7 @@ public class JuegoBatalla {
             mostrarEstado();
         }
     }
+    
     // metodo para mostrar el estado de todos los robots
     private void mostrarEstado() {
         System.out.println("\nEstado actual de los robots:");
@@ -130,6 +131,7 @@ public class JuegoBatalla {
                 " +|+ Defensa: " + r.getDefensa());
         }
     }
+
     // muestra el ganador de la batalla
     private void mostrarGanador() {
         if (cantidad == 1) {
