@@ -98,7 +98,7 @@ public class JuegoBatalla {
                 Robot atacante = robots[i];
                 int objetivo;
                 do {
-                    objetivo = robotAleatorio(); // Uso del nuevo método simplificado
+                    objetivo = robotAleatorio(); 
                 } while (objetivo == i);
                 Robot atacado = robots[objetivo];
                 atacante.atacar(atacado);
