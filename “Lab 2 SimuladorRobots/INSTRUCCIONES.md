@@ -1,0 +1,5 @@
+Para ejecutar los archivos hace falta descargarlos y ponerlos a correr ya sea en su linea de comandos del sistema on desde una aplicacion tipo VS
+Una vez que inicie a correr el programa se iniciara preguntando la cantidad de robots que desea con un amximo dem 10, si el usuario sobrepasa este numero se iniciaran con 10 robotsb y se le indicara esto al usuario. Para asegurar que siempre haya una batalla sin el numero es menor a 2, sucedera que nparticiparan 2 robots en la pelea
+luego preguntara los datos de cada robot y se le dira alo usuario los prangoss de ciertos datos, si el usuario da un numero inferior se toma el minimo y al revez si da un numero mayor que se tomaria el maximo de dicho rango
+cuando se rellenen todos los datos se empieza la pelea, hay que apretar enter para que suceda un turno o escribir p para pausar la pelea y ver las estadisticas
+asi hasta que ser acabe la pelea y gane uno.
