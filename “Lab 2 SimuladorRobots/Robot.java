@@ -60,9 +60,9 @@ public class Robot{
             danoVerdadero=1;
         }
         otroRobot.puntosVida= otroRobot.puntosVida-danoVerdadero;
-        System.out.println(this.nombre + " ataca a " + otroRobot.nombre + 
-                           " puntos de dano causados" + danoVerdadero);
-        System.out.println(otroRobot.nombre + " tiene " + otroRobot.puntosVida + " puntos de vida");
+        System.out.println(this.nombre + " ataca a  " + otroRobot.nombre + 
+                           " puntos de dano causados  " + danoVerdadero);
+        System.out.println(otroRobot.nombre + " tiene  " + otroRobot.puntosVida + " puntos de vida  ");
     }
     //aqui se crea un booleano porque asi lo dice el ejercicio
     public boolean estaVivo() {
