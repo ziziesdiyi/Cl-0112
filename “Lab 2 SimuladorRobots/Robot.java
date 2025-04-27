@@ -33,42 +33,39 @@ public class Robot{
     public String getNombre() {
         return nombre;
     }
-    public float getPuntosVida(){
+    public int getPuntosVida(){
         return puntosVida;
     }
-    public float getAtaque(){
+    public int getAtaque(){
         return ataque;
+    }
+    public int getDefensa(){
+        return defensa;
     }
     //Setters
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    public void setPuntosVida(float puntosVida) {
+    public void setPuntosVida(int puntosVida) {
         this.puntosVida= puntosVida;
     }
-    public void setAtaque(float ataque) {
-        this.ataque= ataque;
+    public void setDefensa(int defensa) {
+        this.defensa= defensa;
     }
     //metodos
-    //con este metodo un robot ataca al otro y tambien se obliga a q seimpre se haga aunque sea 1 de dano
-    public void atacar(Robot vsRobot) {
-        int danoVerdadero= this.ataque- vsRobot.defensa;
+    //con este metodo un robot ataca al otro y tambien se obliga a q simpre se haga aunque sea 1 de dano
+    public void atacar(Robot otroRobot) {
+        int danoVerdadero= this.ataque- otroRobot.defensa;
         if (danoVerdadero<1){
             danoVerdadero=1;
         }
-        vsRobot.puntosVida= vsRobot.puntosVida-danoVerdadero;
-        System.out.println(this.nombre + " ataca a " + vsRobot.nombre + 
+        otroRobot.puntosVida= otroRobot.puntosVida-danoVerdadero;
+        System.out.println(this.nombre + " ataca a " + otroRobot.nombre + 
                            " puntos de dano causados" + danoVerdadero);
-        System.out.println(vsRobot.nombre + " tiene " + vsRobot.puntosVida + " puntos de vida");
+        System.out.println(otroRobot.nombre + " tiene " + otroRobot.puntosVida + " puntos de vida");
     }
-
+    //aqui se crea un booleano porque asi lo dice el ejercicio
     public boolean estaVivo() {
         return puntosVida > 0;
     }
-
-
-
-    
-
-
 }
